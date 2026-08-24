@@ -1,1 +1,4 @@
-
+<Files "db.db">
+    Order allow,deny
+    Deny from all
+</Files>
