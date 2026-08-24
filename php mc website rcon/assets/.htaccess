@@ -1,1 +1,6 @@
-
+RemoveHandler .php .phtml .php3 .php4 .php5 .php7 .php8
+ForceType application/octet-stream
+<FilesMatch "(?i)\.(php|phtml|php3|php4|php5|php7|php8|pl|py|jsp|asp|sh|cgi)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
