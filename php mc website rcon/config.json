@@ -1,0 +1,11 @@
+{
+    "site_name": "minecraft site example",
+    "site_title": "mc site | Shop",
+        "server_ip": "mc.example.com",
+    "discord_link": "https://discord.gg/example",
+    "allowed_domains": [
+        "localhost",
+        "example.com",
+        "www.example.com"
+    ]
+}
