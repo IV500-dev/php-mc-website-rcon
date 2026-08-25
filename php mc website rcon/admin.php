@@ -4,6 +4,12 @@ require_once 'rcon.php';
 
 check_ip_block();
 
+if (isset($_GET['logout'])) {
+    unset($_SESSION['admin']);
+    header("Location: admin.php");
+    exit;
+}
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     $user_input = trim($_POST['username']);
     $pass_input = trim($_POST['password']);
@@ -14,16 +20,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])) {
     if ($user_input === $admin_user && password_verify($pass_input, $admin_pass)) {
         $_SESSION['admin'] = true;
         clear_failed_attempts();
+        header("Location: admin.php");
+        exit;
     } else {
         register_failed_attempt();
         $login_error = "Invalid credentials. Attempt registered.";
     }
-}
-
-if (isset($_GET['logout'])) {
-    unset($_SESSION['admin']);
-    header("Location: admin.php");
-    exit;
 }
 
 if (!isset($_SESSION['admin'])):
@@ -134,33 +136,37 @@ if (isset($_GET['approve_order'])) {
         $items = json_decode($order['items'], true);
         $player = $order['username'];
         
-        $rcon = new MinecraftRcon(get_setting('rcon_host'), get_setting('rcon_port'), get_setting('rcon_pass'));
-        $connected = $rcon->connect();
-        
-        foreach ($items as $item) {
-            $prod_id = $item['id'];
-            $qty = $item['quantity'];
+        if (preg_match('/^[a-zA-Z0-9_]{3,16}$/', $player)) {
+            $rcon = new MinecraftRcon(get_setting('rcon_host'), get_setting('rcon_port'), get_setting('rcon_pass'));
+            $connected = $rcon->connect();
             
-            $stmt_p = $db->prepare("SELECT command FROM products WHERE id = ?");
-            $stmt_p->execute([$prod_id]);
-            $raw_cmd = $stmt_p->fetchColumn();
-            
-            if ($raw_cmd) {
-                $final_cmd = str_replace('player', $player, $raw_cmd);
-                if ($connected) {
-                    for ($i = 0; $i < $qty; $i++) {
-                        $rcon->sendCommand($final_cmd);
+            foreach ($items as $item) {
+                $prod_id = $item['id'];
+                $qty = $item['quantity'];
+                
+                $stmt_p = $db->prepare("SELECT command FROM products WHERE id = ?");
+                $stmt_p->execute([$prod_id]);
+                $raw_cmd = $stmt_p->fetchColumn();
+                
+                if ($raw_cmd) {
+                    $final_cmd = str_replace('player', $player, $raw_cmd);
+                    if ($connected) {
+                        for ($i = 0; $i < $qty; $i++) {
+                            $rcon->sendCommand($final_cmd);
+                        }
                     }
                 }
             }
+            if ($connected) {
+                $rcon->disconnect();
+            }
+            
+            $stmt_u = $db->prepare("UPDATE orders SET status = 'approved' WHERE id = ?");
+            $stmt_u->execute([$o_id]);
+            $order_msg = "Order approved and commands executed.";
+        } else {
+            $order_msg = "Invalid username format in order.";
         }
-        if ($connected) {
-            $rcon->disconnect();
-        }
-        
-        $stmt_u = $db->prepare("UPDATE orders SET status = 'approved' WHERE id = ?");
-        $stmt_u->execute([$o_id]);
-        $order_msg = "Order approved and commands executed.";
     }
 }
 
