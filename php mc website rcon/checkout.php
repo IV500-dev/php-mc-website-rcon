@@ -93,12 +93,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_FILES['receipt']) && !empty(
     <link rel="icon" type="image/x-icon" href="assets/fav.ico">
     <style>
         * { box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; }
-        body { background: url('assets/log.png') repeat; color: #fff; }
-        header { background: url('assets/dark_oak_planks.png') repeat; border-bottom: 4px solid #1a1a1a; padding: 20px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 15px; }
+        body { background: url('assets/log.webp') repeat; color: #fff; }
+        header { background: url('assets/dark_oak_planks.webp') repeat; border-bottom: 4px solid #1a1a1a; padding: 20px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 15px; }
         header img { width: 48px; height: 48px; image-rendering: pixelated; }
         header h1 { font-size: 32px; text-shadow: 2px 2px #000; color: #ffaa00; }
         .container { max-width: 800px; margin: 30px auto; padding: 0 20px; }
-        .card { background: url('assets/cracked_stone_bricks.png') repeat; border: 3px solid #333; box-shadow: inset 0 0 10px #000; border-radius: 6px; padding: 20px; margin-bottom: 25px; }
+        .card { background: url('assets/cracked_stone_bricks.webp') repeat; border: 3px solid #333; box-shadow: inset 0 0 10px #000; border-radius: 6px; padding: 20px; margin-bottom: 25px; }
         .card h2 { text-shadow: 2px 2px #000; margin-bottom: 15px; color: #ffff55; }
         .btn { background: #55ff55; color: #000; border: none; padding: 10px 15px; cursor: pointer; font-weight: bold; border-radius: 4px; display: inline-block; text-decoration: none; }
         .btn:hover { background: #22aa22; color: #fff; }
