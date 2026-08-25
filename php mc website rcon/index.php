@@ -128,8 +128,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['send_ticket']) && isse
             -moz-user-select: none;
             -ms-user-select: none;
         }
-        body { background: url('assets/log.png') repeat; color: #fff; }
-        header { background: url('assets/dark_oak_planks.png') repeat; border-bottom: 4px solid #1a1a1a; padding: 20px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 15px; }
+        body { background: url('assets/log.webp') repeat; color: #fff; }
+        header { background: url('assets/dark_oak_planks.webp') repeat; border-bottom: 4px solid #1a1a1a; padding: 20px; text-align: center; display: flex; align-items: center; justify-content: center; gap: 15px; }
         header img { width: 48px; height: 48px; image-rendering: pixelated; }
         header h1 { font-size: 32px; text-shadow: 2px 2px #000; color: #ffaa00; }
         .container { max-width: 1100px; margin: 30px auto; padding: 0 20px; }
@@ -142,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['send_ticket']) && isse
         .ip-copy:hover { background: #444; border-color: #aaa; }
         .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 30px; }
         @media(max-width: 768px) { .grid { grid-template-columns: 1fr; } }
-        .card { background: url('assets/cracked_stone_bricks.png') repeat; border: 3px solid #333; box-shadow: inset 0 0 10px #000; border-radius: 6px; padding: 20px; margin-bottom: 25px; }
+        .card { background: url('assets/cracked_stone_bricks.webp') repeat; border: 3px solid #333; box-shadow: inset 0 0 10px #000; border-radius: 6px; padding: 20px; margin-bottom: 25px; }
         .card h2 { text-shadow: 2px 2px #000; margin-bottom: 15px; color: #ffff55; }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; margin-bottom: 5px; font-size: 14px; }
@@ -204,7 +204,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['send_ticket']) && isse
 
 <audio id="stone-sound" src="assets/Stone_dig1.ogg" preload="auto"></audio>
 
-<div id="custom-menu" style="display: none; position: absolute; background: url('assets/dark_oak_planks.png') repeat; border: 3px solid #1a1a1a; box-shadow: 0 4px 10px rgba(0,0,0,0.8); z-index: 10000; width: 180px; font-family: monospace;">
+<div id="custom-menu" style="display: none; position: absolute; background: url('assets/dark_oak_planks.webp') repeat; border: 3px solid #1a1a1a; box-shadow: 0 4px 10px rgba(0,0,0,0.8); z-index: 10000; width: 180px; font-family: monospace;">
     <ul style="list-style: none; padding: 5px; margin: 0;">
         <li onclick="window.location.href='index.php'" style="padding: 10px; color: #ffff55; cursor: pointer; border-bottom: 2px solid #1a1a1a;">» Store Home</li>
         <li onclick="window.location.href='<?php echo htmlspecialchars($discord_link); ?>'" style="padding: 10px; color: #aa00aa; text-shadow: 1px 1px #000; font-weight: bold; cursor: pointer; border-bottom: 2px solid #1a1a1a;">» Discord</li>
@@ -241,7 +241,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['send_ticket']) && isse
             <?php if (!isset($_SESSION['user'])): ?>
                 <div class="card" style="max-width: 500px; margin: 0 auto 30px;">
                     <div class="avatar-box">
-                        <img src="assets/steve.jpg" alt="Player Skin">
+                        <img src="assets/steve.webp" alt="Player Skin">
                     </div>
                     <h2>Login</h2>
                     <?php if (isset($error)): ?><div class="alert alert-error"><?php echo $error; ?></div><?php endif; ?>
