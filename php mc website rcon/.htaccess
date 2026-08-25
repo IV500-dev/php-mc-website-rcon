@@ -2,3 +2,7 @@
     Order allow,deny
     Deny from all
 </Files>
+<Files "config.yml">
+    Order allow,deny
+    Deny from all
+</Files>
